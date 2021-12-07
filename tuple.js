@@ -1,18 +1,10 @@
 function solution(s) {
     var answer = [];
 
-    s = s.slice(1, s.length - 1);
-    for (let i = 0; i < s.length; i++) {
-      if (s[i] == '}' && s[i + 1] == ',')
-        s = s.replace('},{', '}.{');
-    }
-    let arrays = s.split('.').map(ele => {
-        return ele.slice(1, ele.length - 1).split(',').map(char => Number(char));
-    });
-    
+	let arrays = JSON.parse(s.replace(/{/g, '[').replace(/}/g, ']'));
     arrays.sort((a, b) => a.length - b.length);
 
-    let stack = [];
+	let stack = [];
     arrays.map(arr => {
         let len = arr.length;
         arr.map(numb => {
@@ -27,7 +19,7 @@ function solution(s) {
 }
 
 
-const s = "{{2},{2,1},{2,1,3},{2,1,3,4}}";
+const s = "{{4,2,3},{3},{2,3,4,1},{2,3}}";
 console.log(solution(s));
 
 /* 
