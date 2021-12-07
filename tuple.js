@@ -3,19 +3,9 @@ function solution(s) {
 
 	let arrays = JSON.parse(s.replace(/{/g, '[').replace(/}/g, ']'));
     arrays.sort((a, b) => a.length - b.length);
-
-	let stack = [];
-    arrays.map(arr => {
-        let len = arr.length;
-        arr.map(numb => {
-            if (!stack.includes(numb)) {
-                stack.push(numb);
-                answer[len] = answer[len] === undefined ? [] : answer[len];
-                answer[len].push(numb);
-            }
-    })})
-
-    return answer.slice(1).map(ele => ele[0]);
+	return arrays.reduce((arr, value, len) => 
+		len == 0 ? value : arr.concat(value.filter(ele => !arr.includes(ele)))
+	, [])
 }
 
 
