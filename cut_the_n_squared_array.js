@@ -1,36 +1,18 @@
 function solution(n, left, right) {
 	var answer = [];
 	//n행 n열 크기의 비어있는 2차원 배열을 만듭니다.
-	let array = Array(n).fill(0);
-	let arrays = array.map(ele => array.slice());
 
-	console.log(arrays);
 	//1행 1열부터 i행 i열까지의 영역 내의 모든 빈 칸을 숫자 i로 채웁니다.
-	for (let i = 0; i < n; i++) {
-		for (let j = 0; j < n; j++) {
-			if (arrays[i][j] === 0) {
-				if (i === j) {
-					arrays[i][j] = i + 1;
-				}
-				else if (i > j) {
-					arrays[i][j] = i + 1;
-				} 
-				else if (i < j) {
-					arrays[i][j] = j + 1;
-				}
-			}
-		}
-	}
-
-	console.log(arrays);
 	//1행, 2행, ..., n행을 잘라내어 모두 이어붙인 새로운 1차원 배열을 만듭니다.
-
 	//새로운 1차원 배열을 arr이라 할 때, arr[left], arr[left+1], ..., arr[right]만 남기고 나머지는 지웁니다.
+	for (let i = left; i <= right; i++) {
+		answer.push(Math.max(i % n , Math.floor(i / n) + 1));
+	}
 	return answer;
 }
 
 
-console.log(solution(3, 2, 5));
+console.log(solution(1000000, 700000, 800000));
 /*
 문제 설명
 정수 n, left, right가 주어집니다. 다음 과정을 거쳐서 1차원 배열을 만들고자 합니다.
@@ -51,4 +33,20 @@ right - left < 105
 n		left	right	result
 3		2	    5			[3,2,2,3]
 4		7			14		[4,3,3,3,4,4,4,4]
+
+function solution(n, left, right) {
+  var answer = [];
+  let arr = Array.from(Array(n), () => Array(n).fill(0));
+  let line = [];
+  for (let i = 0; i < n; i++) {
+    for (let j = 0; j < n; j++) {
+      arr[i][j] = i > j ? i + 1 : j + 1;
+    }
+    line.push(...arr[i]);
+  }
+  answer = line.slice(left, right+1);
+  
+  return answer;
+}
+
 */
