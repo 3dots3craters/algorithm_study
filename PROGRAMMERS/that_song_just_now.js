@@ -21,11 +21,11 @@ function solution(m, musicinfos) {
     let gap = (end_hour - start_hour) * 60;
     gap =
       start_min > end_min
-        ? gap + (start_min - end_min) * 1
+        ? gap - (start_min - end_min) * 1
         : gap + (end_min - start_min) * 1;
     melody = changeMelody(melody);
-    console.log("melody: ", melody);
-    let loop = gap / melody.length;
+    // console.log("melody: ", melody);
+    let loop = parseInt(gap / melody.length);
     const index = gap % melody.length;
     let new_melody = "";
     if (loop > 0) {
@@ -46,7 +46,3 @@ function solution(m, musicinfos) {
 
   return array[0] === undefined ? "(None)" : array[0].title;
 }
-
-const m = "CCB";
-const musicinfos = ["03:00,03:10,FOO,CCB#CCB", "04:00,04:08,BAR,ABC"];
-console.log(solution(m, musicinfos));
