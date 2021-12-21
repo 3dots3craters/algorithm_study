@@ -1,4 +1,4 @@
-function solution(n) {
+function solution2(n) {
   var answer = [];
 
   let remains = n % 7;
@@ -38,9 +38,39 @@ function solution(n) {
   return answer;
 }
 
-console.log(solution(13));
+console.log(solution2(13));
 
 function solution3(n) {
+  /*
+			1 -> 1~9
+			2 -> 90 * 2 = 180 -> 10~189
+			3 -> 100~999 -> 900 * 3 = 2700 -> 190~2889
+			4 -> 9000 * 4 = 36000
+			5 -> 90000 * 5
+			6
+			7
+			8
+			9
+			10
+	*/
+  k = 9;
+  i = 1;
+  while (n > k) {
+    ++i;
+    k += Math.pow(10, i - 1) * 9 * i;
+  }
+  n -= k - Math.pow(10, i - 1) * 9 * i;
+
+  let str = "";
+  let number = Math.pow(10, i - 1);
+  while (str.length < n) {
+    str += "" + number;
+    number++;
+  }
+  return Number(str[n - 1]);
+}
+
+function solution33(n) {
   let str = "";
   let number = 1;
   while (str.length < n) {
@@ -50,3 +80,17 @@ function solution3(n) {
 
   return Number(str[n - 1]);
 }
+/* 
+		입출력 예
+	n	result
+	5	5
+	15	2
+		*/
+
+const n = 100100000;
+console.time("label1");
+console.log(solution33(n));
+console.timeEnd("label1");
+console.time("label");
+console.log(solution3(n));
+console.timeEnd("label");
