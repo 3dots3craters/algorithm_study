@@ -6,7 +6,6 @@ for _ in range(3):
     print(stackX, stackY)
     if stackX.count(X):
         stackX.remove(X)
-        print("HI")
     else:
         stackX.append(X)
     if stackY.count(Y):
