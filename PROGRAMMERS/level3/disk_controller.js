@@ -7,7 +7,9 @@ function solution(jobs) {
     };
   });
 
-  let [time, total] = [0, 0];
+  works.sort((a, b) => a.request - b.request);
+
+  let [time, total] = [0, 0]; // time은 흐른 시간 그 자체 , total은 각각의 요청을 처리 완료하기까지 걸린 시간을 합한 것
 
   function minTakenTimeIndex(waited) {
     if (waited.length > 0) {
@@ -33,7 +35,6 @@ function solution(jobs) {
       works[index].start = time;
       total += works[index].start - works[index].request + works[index].taken;
       time += works[index].taken;
-      // console.log("works[index]: ", works[index]);
       works.splice(index, 1);
     }
   }
