@@ -11,7 +11,7 @@ for _ in range(T):
     j = 3 if b % 4 == 0 else b % 4 - 1
     print(10 if table[i][j] == 0 else table[i][j])
 
-# 출처: https: // www.acmicpc.net/source/38015148
+# 출처: https://www.acmicpc.net/source/38015148
 # 출처: https://docs.python.org/3/library/functions.html?highlight=pow#pow
 # count = int(input())
 # ans = 0
